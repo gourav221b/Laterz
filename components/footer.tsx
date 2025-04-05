@@ -21,7 +21,7 @@ export default function Footer() {
           </div>
           <div className="flex space-x-6">
             <Link
-              href="https://github.com/gourav/Laterz"
+              href="https://github.com/gourav221b/Laterz"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-700 hover:text-purple-600 transition-colors flex items-center"

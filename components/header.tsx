@@ -18,7 +18,7 @@ export default function Header() {
             About
           </Link>
           <Link
-            href="https://github.com/gourav/Laterz"
+            href="https://github.com/gourav221b/Laterz"
             className="flex items-center text-gray-700 hover:text-purple-600 transition-colors"
           >
             <img src={Github.src} alt="GitHub" width={20} height={20} />
