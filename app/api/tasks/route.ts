@@ -28,15 +28,17 @@ export async function POST(req: Request) {
     const prompt = `${tonePrompts[tone as keyof typeof tonePrompts] || tonePrompts.personal}
 
 Task: ${task}
-
+You can use appropriate emojis in your response, and you can also use markdown formatting.
 Please generate:
-1. 3 creative excuses for procrastinating on this task
-2. 3 alternative productive activities that could be done instead
+1. 3 funny, qwirky, out of the box excuses for procrastinating on this task
+2. 3 alternative useless unproductive activities that could be done instead
+3. Based on the above generated excuses and alternatives, generate a level of procrastination: Beginner | Intermediate | Expert
 
 Format the response as JSON:
 {
   "excuses": ["excuse1", "excuse2", "excuse3"],
-  "alternatives": ["alt1", "alt2", "alt3"]
+  "alternatives": ["alt1", "alt2", "alt3"],
+  "level": "Beginner | Intermediate | Expert"
 }`;
 
     const result = await model.generateContent(prompt);

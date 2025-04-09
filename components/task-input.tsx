@@ -63,6 +63,7 @@ export default function TaskInput() {
             id,
             excuses: data.excuses,
             alternatives: data.alternatives,
+            level: data.level
           },
         }),
       )
@@ -87,11 +88,11 @@ export default function TaskInput() {
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-md border border-lavender-200 mb-6">
-      <div className="flex items-center justify-between pb-4">
+      <div className="flex items-center justify-between pb-4 flex-wrap">
       <h2 className="text-xl font-semibold mb-4 text-gray-800">Add a task to avoid</h2>
       <ToneSelector />
       </div>
-      <form onSubmit={handleSubmit} className="flex gap-2">
+      <form onSubmit={handleSubmit} className="flex flex-col md:flex-row gap-2 flex-wrap">
         <Input
           type="text"
           placeholder="Enter a task you should be doing..."
