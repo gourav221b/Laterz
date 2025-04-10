@@ -1,5 +1,6 @@
 import Github from '@/public/github-mark.png'
 import Link from "next/link"
+import TaskInput from './task-input'
 
 export default function Header() {
   return (
@@ -13,6 +14,9 @@ export default function Header() {
           </Link>
         </div>
         <nav className="flex items-center space-x-6">
+          <div className="hidden md:block">
+          <TaskInput floating={false}/>
+          </div>
          
           <Link href="/about" className="text-gray-700 hover:text-purple-600 transition-colors">
             About

@@ -14,7 +14,7 @@ const tonePrompts = {
 
 export async function POST(req: Request) {
   try {
-    const { task, tone = "personal" } = await req.json();
+    const { task, tone = "personal", category, priority, tags } = await req.json();
 
     if (!task) {
       return NextResponse.json(
@@ -25,12 +25,25 @@ export async function POST(req: Request) {
 
     const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
 
+    // Create a context-aware prompt based on task properties
+    let contextPrompt = "";
+    if (category) {
+      contextPrompt += `Category: ${category}\n`;
+    }
+    if (priority) {
+      contextPrompt += `Priority: ${priority}\n`;
+    }
+    if (tags && tags.length > 0) {
+      contextPrompt += `Tags: ${tags.join(', ')}\n`;
+    }
+
     const prompt = `${tonePrompts[tone as keyof typeof tonePrompts] || tonePrompts.personal}
 
 Task: ${task}
-You can use appropriate emojis in your response, and you can also use markdown formatting.
+${contextPrompt}
+You can use appropriate emojis in your response, and you can also use markdown formatting. Make the excuses funny, natural and relatable. It should not be too fancy / seem made up and relatable to Indian Bengali audience.
 Please generate:
-1. 3 funny, qwirky, out of the box excuses for procrastinating on this task
+1. 3 funny, qwirky, out of the box excuses for procrastinating on this task. Give maximum two sentences for each excuse.
 2. 3 alternative useless unproductive activities that could be done instead
 3. Based on the above generated excuses and alternatives, generate a level of procrastination: Beginner | Intermediate | Expert
 

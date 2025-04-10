@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { motion } from "framer-motion"
+import { Label } from "./ui/label"
 
 const tones = [
   { value: "corporate", label: "Corporate" },
@@ -33,11 +34,11 @@ export default function ToneSelector() {
     <motion.div
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="flex items-center gap-2"
+      className="flex flex-col items-start mt-1 w-full space-y-2 pt-0.5"
     >
-      <span className="text-sm text-gray-600">AI Tone:</span>
+      <Label className="text-sm text-gray-600">AI Tone</Label>
       <Select value={tone} onValueChange={handleToneChange} >
-        <SelectTrigger className="w-[180px] border-2 border-lavender-300">
+        <SelectTrigger className="w-full border-lavender-300 focus:ring-purple-500">
           <SelectValue placeholder="Select tone" />
         </SelectTrigger>
         <SelectContent>
